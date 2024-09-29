@@ -9,7 +9,7 @@ export abstract class AdapterRepository<T, E extends BaseEntity> implements Base
 
   constructor(private readonly adapterRepository: Repository<E>) {}
 
-  abstract mapping(entity: T): T;
+  abstract mapping(entity: T & E): T;
 
   async save(entity: T & E): Promise<T> {
     const savedEntity = await this.adapterRepository.save(entity);

@@ -11,7 +11,7 @@ export class ChatsAdapter extends AdapterRepository<Chat, ChatEntity> implements
   constructor(@InjectRepository(ChatEntity) private chatRepository: Repository<ChatEntity>) {
     super(chatRepository);
   }
-  mapping(entity: Chat): Chat {
+  mapping(entity: Partial<ChatEntity>): Chat {
     return Chat.mapping(entity);
   }
 
@@ -22,6 +22,6 @@ export class ChatsAdapter extends AdapterRepository<Chat, ChatEntity> implements
     return await this.findByOptions({ where: { name } });
   }
   async findByUserId(userId: string): Promise<Chat[]> {
-    return await this.findAll({ where: { users: [{ id: userId }] } })[0];
+    return (await this.findAll({ where: { users: [{ id: userId }] } }))[0];
   }
 }

@@ -1,10 +1,11 @@
 import { IsDate, IsOptional, IsString, IsUUID, MaxDate, MinDate, validateSync } from 'class-validator';
-import { IUser } from './user.interface';
+import { IUser, UserBuildResponse } from './user.interface';
 import { Logger } from '@nestjs/common';
 import { randomUUID } from 'crypto';
+import { BaseDomain } from '@app/common/base-domain/base.domain';
 
-export class User implements IUser {
-  private logger = new Logger(User.name);
+export class User extends BaseDomain implements IUser {
+  logger = new Logger(User.name);
   @IsUUID()
   id: string;
 
@@ -15,7 +16,7 @@ export class User implements IUser {
   @IsDate()
   @MinDate(new Date('1950-01-01Z00:00:00:000Z'))
   @MaxDate(new Date('2070-01-01Z00:00:00:000Z'))
-  created_At: string;
+  created_At: Date;
 
   static create(createUserDto: Partial<User>): User {
     const newUser = new User();
@@ -29,24 +30,26 @@ export class User implements IUser {
     return newUser;
   }
 
-  static mapping(userDto: Partial<User>): User {
+  static mapping(userDto: Partial<IUser>): User {
     const newUser = new User();
     newUser.id = userDto.id;
     newUser.username = userDto.username;
     newUser.created_At = userDto.created_At;
     const error = validateSync(newUser);
     if (!!error.length) {
-      error.forEach((e) => newUser.logger.error(e.constraints));
+      error.forEach((e) => {
+        console.error(e);
+        newUser.logger.error(e.constraints);
+      });
       throw new Error('User not valid');
     }
     return newUser;
   }
 
-  static buildResponse(user: User): IUser {
+  static buildResponse(user: IUser): UserBuildResponse {
     return {
-      id: user.id,
+      ...this.baseBuildResponse(user),
       username: user.username,
-      created_At: user.created_At,
     };
   }
 }

@@ -3,7 +3,7 @@ import { User } from '../domain/user';
 import { UserEntity } from 'src/db/entities';
 import { Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { UsersRepository } from './users.repository';
 
 export class UsersAdapter extends AdapterRepository<User, UserEntity> implements UsersRepository {
@@ -12,7 +12,7 @@ export class UsersAdapter extends AdapterRepository<User, UserEntity> implements
     super(userRepository);
   }
 
-  mapping(entity: User): User {
+  mapping(entity: Partial<UserEntity>): User {
     return User.mapping(entity);
   }
 
@@ -21,7 +21,9 @@ export class UsersAdapter extends AdapterRepository<User, UserEntity> implements
   }
 
   async findManyByIds(ids: string[]): Promise<User[]> {
-    return await this.findAll({ where: ids.map((id) => ({ id })) })[0];
+    // const finded = await this.findAll({ where: { id: In(ids) } })[0];
+    const finded = await this.userRepository.findBy({ id: In(ids) });
+    return finded.map((user) => this.mapping(user));
   }
 
   async findByName(username: string): Promise<User> {
