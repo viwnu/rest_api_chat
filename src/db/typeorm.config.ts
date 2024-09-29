@@ -13,6 +13,8 @@ export const TypeOrmConfigService = (): TypeOrmModuleAsyncOptions => ({
     entities: ENTITES,
     autoLoadEntities: Boolean(configService.get('SYNC_DB') === 'true') || false,
     synchronize: Boolean(configService.get('SYNC_DB') === 'true') || false,
+    logger: 'simple-console',
+    logging: Boolean(configService.get('TYPEORM_LOGGING') === 'true') || false,
   }),
   inject: [ConfigService],
   imports: [ConfigModule],

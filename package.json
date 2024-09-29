@@ -17,7 +17,16 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "cross-env NODE_ENV=testing jest --config ./test/jest-e2e.json --testPathPattern /",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./src/db/data-source.ts",
+    "db:create-dev": "cross-env NODE_ENV=development npm run typeorm migration:generate",
+    "db:create-prod": "cross-env NODE_ENV=production npm run typeorm migration:generate",
+    "db:migrate-dev": "cross-env NODE_ENV=development npm run typeorm migration:run",
+    "db:migrate-prod": "cross-env NODE_ENV=production npm run typeorm migration:run",
+    "db:drop-dev": "cross-env NODE_ENV=development npm run typeorm schema:drop",
+    "db:drop-prod": "cross-env NODE_ENV=production npm run typeorm schema:drop",
+    "db:seed-dev": "cross-env NODE_ENV=development ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./src/db/data-source.seed.ts migration:run",
+    "db:seed-prod": "cross-env NODE_ENV=production ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./src/db/data-source.seed.ts migration:run"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -30,6 +39,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
     "pg": "^8.13.0",
     "postgres": "^3.4.4",
     "reflect-metadata": "^0.1.13",
