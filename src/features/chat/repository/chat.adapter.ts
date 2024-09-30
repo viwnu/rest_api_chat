@@ -22,6 +22,6 @@ export class ChatsAdapter extends AdapterRepository<Chat, ChatEntity> implements
     return await this.findByOptions({ where: { name } });
   }
   async findByUserId(userId: string): Promise<Chat[]> {
-    return (await this.findAll({ where: { users: [{ id: userId }] } }))[0];
+    return (await this.findAll({ where: { users: [{ id: userId }] }, order: { created_At: 'DESC' } }))[0];
   }
 }

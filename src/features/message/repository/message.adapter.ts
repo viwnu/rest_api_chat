@@ -16,7 +16,11 @@ export class MessageAdapter extends AdapterRepository<Message, MessageEntity> im
   }
 
   async findByChatId(chatId: string): Promise<Message[]> {
-    const messages = await this.findAll({ where: { chat: { id: chatId } }, relations: { author: true, chat: true } });
+    const messages = await this.findAll({
+      where: { chat: { id: chatId } },
+      relations: { author: true, chat: true },
+      order: { created_At: 'ASC' },
+    });
     return messages[0];
   }
 }
