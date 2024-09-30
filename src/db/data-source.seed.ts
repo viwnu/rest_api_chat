@@ -1,7 +1,7 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
 import { ENTITES } from './entities';
-import { Seed1727625459361 } from './migrations/1727625459361-seed';
+import { Seed1727625459361 } from './migrations';
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV.trim()}`,

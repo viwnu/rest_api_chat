@@ -1,7 +1,5 @@
-import { Chat } from 'src/features/chat/domain/chat';
-import { ChatBuildResponse } from 'src/features/chat/domain/chat.interface';
-import { User } from 'src/features/user/domain/user';
-import { UserBuildResponse } from 'src/features/user/domain/user.interface';
+import { Chat, ChatBuildResponse } from 'src/features/chat/domain';
+import { User, UserBuildResponse } from 'src/features/user/domain';
 
 export interface IMessage {
   id: string;

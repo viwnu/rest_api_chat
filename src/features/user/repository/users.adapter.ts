@@ -4,7 +4,7 @@ import { UserEntity } from 'src/db/entities';
 import { Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
-import { UsersRepository } from './users.repository';
+import { UsersRepository } from '.';
 
 export class UsersAdapter extends AdapterRepository<User, UserEntity> implements UsersRepository {
   logger = new Logger(UsersAdapter.name);

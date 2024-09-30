@@ -1,14 +1,12 @@
 import { Module } from '@nestjs/common';
-import { MessageService } from './application/message.service';
-import { MessageController } from './api/message.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { MessageController } from './api';
+import { MessageService } from './application';
 import { ChatEntity, MessageEntity, UserEntity } from 'src/db/entities';
-import { UsersRepository } from '../user/repository/users.repository';
-import { UsersAdapter } from '../user/repository/users.adapter';
-import { ChatRepository } from '../chat/repository/chat.repository';
-import { ChatsAdapter } from '../chat/repository/chat.adapter';
-import { MessageRepository } from './repository/message.repository';
-import { MessageAdapter } from './repository/message.adapter';
+import { UsersRepository, UsersAdapter } from '../user/repository';
+import { ChatRepository, ChatsAdapter } from '../chat/repository';
+import { MessageRepository, MessageAdapter } from './repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity, ChatEntity, MessageEntity])],

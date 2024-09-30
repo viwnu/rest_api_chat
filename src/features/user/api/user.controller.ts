@@ -1,9 +1,10 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { UserService } from '../application/user.service';
-import { CreateUserInputModel } from './models/input/create-user.input.model';
-import { UserViewModel } from './models/view/user.view.model';
-import { Create } from 'src/common/decorators/create.decorator';
+
+import { Create } from 'src/common/decorators';
+import { UserService } from '../application';
+import { CreateUserInputModel } from './models/input';
+import { UserViewModel } from './models/view';
 
 @ApiTags('Users')
 @Controller('users')

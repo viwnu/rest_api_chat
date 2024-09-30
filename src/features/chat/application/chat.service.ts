@@ -1,9 +1,10 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateChatInputModel } from '../api/models/input/create-chat.input.model';
-import { ChatRepository } from '../repository/chat.repository';
-import { UsersRepository } from 'src/features/user/repository/users.repository';
-import { Chat } from '../domain/chat';
-import { ChatViewModel } from '../api/models/view/chat.view.model';
+
+import { CreateChatInputModel } from '../api/models/input';
+import { ChatViewModel } from '../api/models/view';
+import { ChatRepository } from '../repository';
+import { UsersRepository } from 'src/features/user/repository';
+import { Chat } from '../domain';
 
 @Injectable()
 export class ChatService {

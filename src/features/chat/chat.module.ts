@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ChatService } from './application/chat.service';
-import { ChatController } from './api/chat.controller';
-import { ChatRepository } from './repository/chat.repository';
-import { ChatsAdapter } from './repository/chat.adapter';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { ChatService } from './application';
+import { ChatController } from './api';
+import { ChatRepository, ChatsAdapter } from './repository';
 import { ChatEntity, UserEntity } from 'src/db/entities';
-import { UsersRepository } from '../user/repository/users.repository';
-import { UsersAdapter } from '../user/repository/users.adapter';
+import { UsersRepository, UsersAdapter } from '../user/repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ChatEntity, UserEntity])],

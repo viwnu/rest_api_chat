@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsUUID } from 'class-validator';
-import { ChatViewModel } from 'src/features/chat/api/models/view/chat.view.model';
-import { UserViewModel } from 'src/features/user/api/models/view/user.view.model';
+
+import { ChatViewModel } from 'src/features/chat/api/models/view';
+import { UserViewModel } from 'src/features/user/api/models/view';
 
 export class MessageViewModel {
   @ApiProperty({ type: 'string', example: 'c47f3448-0a96-487f-b602-0a4529825fa2', description: 'The unique id of chat' })

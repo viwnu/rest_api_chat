@@ -1,10 +1,9 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { MessageService } from '../application/message.service';
-import { CreateMessageInputModel } from './models/input/create-message.input.model';
-import { MessageViewModel } from './models/view/message.view.model';
-import { Create400 } from 'src/common/decorators/create400.decorator';
-import { GetMany } from 'src/common/decorators/GetMany.decorator';
-import { GetChatMessagesInputModel } from './models/input/get-chat-messages.input.model';
+
+import { Create400, GetMany } from 'src/common/decorators';
+import { MessageService } from '../application';
+import { CreateMessageInputModel, GetChatMessagesInputModel } from './models/input';
+import { MessageViewModel } from './models/view';
 
 @Controller('messages')
 export class MessageController {

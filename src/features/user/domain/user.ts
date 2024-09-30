@@ -1,8 +1,9 @@
 import { IsDate, IsOptional, IsString, IsUUID, MaxDate, MinDate, validateSync } from 'class-validator';
-import { IUser, UserBuildResponse } from './user.interface';
 import { Logger } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { BaseDomain } from '@app/common/base-domain/base.domain';
+
+import { BaseDomain } from '@app/common/base-domain';
+import { IUser, UserBuildResponse } from '.';
 
 export class User extends BaseDomain implements IUser {
   logger = new Logger(User.name);

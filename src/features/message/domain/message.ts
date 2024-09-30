@@ -2,10 +2,10 @@ import { Logger } from '@nestjs/common';
 import { IsDate, IsOptional, IsString, IsUUID, MaxDate, MinDate, validateSync } from 'class-validator';
 import { randomUUID } from 'crypto';
 
-import { IMessage, MessageBuildResponse } from './message.interface';
-import { Chat } from 'src/features/chat/domain/chat';
+import { BaseDomain } from '@app/common/base-domain';
+import { IMessage, MessageBuildResponse } from '.';
+import { Chat } from 'src/features/chat/domain';
 import { User } from 'src/features/user/domain/user';
-import { BaseDomain } from '@app/common/base-domain/base.domain';
 
 export class Message extends BaseDomain implements IMessage {
   logger = new Logger(Message.name);

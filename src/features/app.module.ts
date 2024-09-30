@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
-import { ChatModule } from './chat/chat.module';
-import { MessageModule } from './message/message.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmConfigService } from 'src/db';
 import { APP_FILTER } from '@nestjs/core';
+
 import { AllExceptionsFilter } from '@app/common/filters';
+import { TypeOrmConfigService } from 'src/db';
+import { UserModule } from './user';
+import { ChatModule } from './chat';
+import { MessageModule } from './message';
 
 @Module({
   imports: [

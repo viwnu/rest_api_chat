@@ -3,7 +3,7 @@ import { User } from 'src/features/user/domain/user';
 import { Logger } from '@nestjs/common';
 import { IsDate, IsOptional, IsString, IsUUID, MaxDate, MinDate, validateSync } from 'class-validator';
 import { randomUUID } from 'crypto';
-import { BaseDomain } from '@app/common/base-domain/base.domain';
+import { BaseDomain } from '@app/common/base-domain';
 
 export class Chat extends BaseDomain implements IChat {
   logger = new Logger(Chat.name);

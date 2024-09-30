@@ -1,11 +1,10 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { ChatService } from '../application/chat.service';
-import { CreateChatInputModel } from './models/input/create-chat.input.model';
 import { ApiTags } from '@nestjs/swagger';
-import { ChatViewModel } from './models/view/chat.view.model';
-import { Create400 } from 'src/common/decorators/create400.decorator';
-import { GetMany } from 'src/common/decorators/GetMany.decorator';
-import { GetUserChatsInputModel } from './models/input/get-user-chats.input.model';
+
+import { Create400, GetMany } from 'src/common/decorators';
+import { ChatService } from '../application';
+import { CreateChatInputModel, GetUserChatsInputModel } from './models/input';
+import { ChatViewModel } from './models/view';
 
 @ApiTags('Chats')
 @Controller('chats')

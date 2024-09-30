@@ -1,10 +1,11 @@
 import { AdapterRepository } from '@app/core';
-import { Chat } from '../domain/chat';
-import { ChatEntity } from 'src/db/entities';
-import { Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Logger } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { ChatRepository } from './chat.repository';
+
+import { Chat } from '../domain';
+import { ChatEntity } from 'src/db/entities';
+import { ChatRepository } from '.';
 
 export class ChatsAdapter extends AdapterRepository<Chat, ChatEntity> implements ChatRepository {
   logger = new Logger(ChatsAdapter.name);

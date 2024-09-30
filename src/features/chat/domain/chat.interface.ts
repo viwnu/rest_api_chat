@@ -1,4 +1,4 @@
-import { IUser, UserBuildResponse } from 'src/features/user/domain/user.interface';
+import { IUser, UserBuildResponse } from 'src/features/user/domain';
 
 export interface IChat {
   id: string;

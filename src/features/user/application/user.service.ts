@@ -1,8 +1,9 @@
 import { ForbiddenException, Injectable, Logger } from '@nestjs/common';
-import { UsersRepository } from '../repository/users.repository';
-import { CreateUserInputModel } from '../api/models/input/create-user.input.model';
-import { User } from '../domain/user';
-import { UserViewModel } from '../api/models/view/user.view.model';
+
+import { UsersRepository } from '../repository';
+import { CreateUserInputModel } from '../api/models/input';
+import { UserViewModel } from '../api/models/view';
+import { User } from '../domain';
 
 @Injectable()
 export class UserService {

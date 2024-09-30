@@ -1,4 +1,4 @@
-import { Chat } from '../domain/chat';
+import { Chat } from '../domain';
 
 export abstract class ChatRepository {
   abstract save(chat: Chat): Promise<Chat>;
