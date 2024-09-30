@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { Create } from 'src/common/decorators';
@@ -12,6 +12,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Create('User creating', UserViewModel)
+  @UseInterceptors(ClassSerializerInterceptor)
   @Post('add')
   async create(@Body() createUserDto: CreateUserInputModel): Promise<UserViewModel> {
     return await this.userService.create(createUserDto);

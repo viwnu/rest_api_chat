@@ -5,5 +5,5 @@ export class CreateUserInputModel {
   @ApiProperty({ type: 'string', example: 'user', description: 'The unique name of user' })
   @IsDefined()
   @IsString()
-  username: string;
+  username!: string;
 }

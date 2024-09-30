@@ -6,7 +6,7 @@ export class AllExceptionsFilter<T> implements ExceptionFilter {
   private readonly logger = new Logger(AllExceptionsFilter.name);
 
   catch(exception: T, host: ArgumentsHost) {
-    this.logger.error(exception);
+    this.logger.error(exception['message']);
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
@@ -16,6 +16,10 @@ export class AllExceptionsFilter<T> implements ExceptionFilter {
   }
 
   private _response(status: number, request: Request, exception: any) {
+    if (exception['response']) {
+      exception['name'] = exception['response']['error'];
+      exception['message'] = exception['response']['message'];
+    }
     return {
       statusCode: status,
       timestamp: new Date().toISOString(),

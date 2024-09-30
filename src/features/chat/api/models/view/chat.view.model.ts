@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Exclude } from 'class-transformer';
+import { Transform } from 'class-transformer';
 import { IsString, IsUUID } from 'class-validator';
 
 export class ChatViewModel {
@@ -9,9 +9,9 @@ export class ChatViewModel {
 
   @ApiProperty({ type: 'string', example: 'district 9', description: 'Name of the Chat' })
   @IsString()
-  @Exclude()
   name: string;
 
   @ApiProperty({ type: 'string', example: '2024-09-27 18:51:57.980602', description: 'date then chat was created' })
+  @Transform(({ value }) => new Date(value).toISOString())
   created_At: string;
 }

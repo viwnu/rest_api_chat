@@ -21,8 +21,10 @@ export class ChatService {
     return Chat.buildResponse(await this.chatRepository.save(newChat));
   }
 
+  // Chat[]
   async findUserChats(userId: string): Promise<ChatViewModel[]> {
     const chats = await this.chatRepository.findByUserId(userId);
+    // return chats;
     return chats.map((chat) => Chat.buildResponse(chat));
   }
 }

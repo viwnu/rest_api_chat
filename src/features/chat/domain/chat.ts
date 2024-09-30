@@ -53,6 +53,7 @@ export class Chat extends BaseDomain implements IChat {
     return {
       ...this.baseBuildResponse(chat),
       name: chat.name,
+      // users: User.buildResponseMany(chat.users),
     };
   }
 }

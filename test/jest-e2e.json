@@ -11,6 +11,7 @@
     "^.+\\.(t|j)s$": "ts-jest"
   },
   "moduleNameMapper": {
+    "^src/(.*)$": "<rootDir>/src/$1",
     "@app/common/(.*)": "<rootDir>/libs/common/src/$1",
     "@app/common": "<rootDir>/libs/common/src",
     "@app/core/(.*)": "<rootDir>/libs/core/src/$1",

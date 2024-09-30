@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, ClassSerializerInterceptor, UseInterceptors } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { Create400, GetMany } from 'src/common/decorators';
@@ -12,12 +12,14 @@ export class ChatController {
   constructor(private readonly chatService: ChatService) {}
 
   @Create400('Create new chat', ChatViewModel)
+  @UseInterceptors(ClassSerializerInterceptor)
   @Post('add')
   async create(@Body() createChatDto: CreateChatInputModel): Promise<ChatViewModel> {
     return await this.chatService.create(createChatDto);
   }
 
   @GetMany('Get all user chats', [ChatViewModel])
+  @UseInterceptors(ClassSerializerInterceptor)
   @Post('get')
   async findUserChats(@Body() findUserChatsInput: GetUserChatsInputModel): Promise<ChatViewModel[]> {
     return await this.chatService.findUserChats(findUserChatsInput.user);
